@@ -1,0 +1,211 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-10-21T19:06:21.160582+00:00",
+  "roms_directory": "D:\\Facul\\UNEB\\EstruturaDeDados2\\NEOGEO-System\\roms",
+  "total_games": 3,
+  "candidate_games": 2,
+  "games": [
+    {
+      "id": "saturn:AstraSuperstars.rar",
+      "title": "AstraSuperstars",
+      "system_id": "saturn",
+      "system_name": "Sega Saturn",
+      "archive": "AstraSuperstars.rar",
+      "format": "rar",
+      "size_bytes": 385760039,
+      "emulator": "retroarch",
+      "core": "beetle_saturn",
+      "launch_mode": "extract_disc_image",
+      "status": "needs_rar_inspection",
+      "contents": [],
+      "error": "Arquivo RAR catalogado, mas seu conteúdo ainda precisa ser inspecionado."
+    },
+    {
+      "id": "neogeo:galaxyfg.zip",
+      "title": "galaxyfg",
+      "system_id": "neogeo",
+      "system_name": "SNK Neo Geo",
+      "archive": "galaxyfg.zip",
+      "format": "zip",
+      "size_bytes": 10673518,
+      "emulator": "retroarch",
+      "core": "fbneo",
+      "launch_mode": "zip_direct",
+      "status": "candidate",
+      "contents": [
+        {
+          "name": "078-c1.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-c2.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-c3.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-c4.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-c5.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-c6.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-c7.bin",
+          "size_bytes": 1048576,
+          "encrypted": false
+        },
+        {
+          "name": "078-c8.bin",
+          "size_bytes": 1048576,
+          "encrypted": false
+        },
+        {
+          "name": "078-m1.bin",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "078-p1.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-s1.bin",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "078-v1.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-v2.bin",
+          "size_bytes": 2097152,
+          "encrypted": false
+        },
+        {
+          "name": "078-v3.bin",
+          "size_bytes": 1048576,
+          "encrypted": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "neogeo:kof2002.zip",
+      "title": "kof2002",
+      "system_id": "neogeo",
+      "system_name": "SNK Neo Geo",
+      "archive": "kof2002.zip",
+      "format": "zip",
+      "size_bytes": 41733426,
+      "emulator": "retroarch",
+      "core": "fbneo",
+      "launch_mode": "zip_direct",
+      "status": "candidate",
+      "contents": [
+        {
+          "name": "king/kof2k2_c1.rom",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_c2.rom",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_c3.rom",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_c4.rom",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_c5.rom",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_c6.rom",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_c7.rom",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_c8.rom",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2K2_M1.ROM",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_p1.rom",
+          "size_bytes": 1048576,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_p2.rom",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2k2_s1.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2K2_V1.ROM",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2K2_V2.ROM",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2K2_V3.ROM",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "king/kof2K2_V4.ROM",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "readme.html",
+          "size_bytes": 730,
+          "encrypted": false
+        }
+      ],
+      "error": null
+    }
+  ]
+}

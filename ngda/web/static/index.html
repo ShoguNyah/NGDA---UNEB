@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGDA — Neo Geo Distributed Arcade</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/7.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="desktop">
+        <section class="window main-window">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    NGDA — Neo Geo Distributed Arcade
+                </div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div class="window-body">
+                <header class="hero">
+                    <p class="eyebrow">ARCADE LIBRARY</p>
+                    <h1>Minha coleção</h1>
+                    <p>Seus sistemas e jogos em um só lugar.</p>
+                </header>
+
+                <section class="nodes-panel" aria-labelledby="nodes-heading">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">DISTRIBUTED SYSTEM</p>
+                            <h2 id="nodes-heading">Nós do NGDA</h2>
+                        </div>
+                        <span id="nodes-summary" class="summary-chip">
+                            Consultando...
+                        </span>
+                    </div>
+
+                    <p class="section-description">
+                        Estado dos agentes distribuídos registrados no Pyro5.
+                    </p>
+
+                    <div id="nodes-message" class="nodes-message"
+                         role="status" aria-live="polite">
+                        Consultando os agentes...
+                    </div>
+
+                    <div id="nodes" class="nodes-grid"
+                         aria-label="Agentes distribuídos"></div>
+
+                    <p class="last-update">
+                        Última consulta: <span id="nodes-updated">—</span>
+                    </p>
+                </section>
+
+                <section class="library-panel" aria-labelledby="library-heading">
+                    <div class="section-heading library-heading">
+                        <div>
+                            <p class="eyebrow">GAME COLLECTION</p>
+                            <h2 id="library-heading">Biblioteca de jogos</h2>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <input
+                            id="search"
+                            type="search"
+                            placeholder="Buscar jogo ou sistema..."
+                            aria-label="Buscar jogo ou sistema"
+                        >
+
+                        <select id="system-filter" aria-label="Filtrar sistema">
+                            <option value="">Todos os sistemas</option>
+                            <option value="neogeo">SNK Neo Geo</option>
+                            <option value="saturn">Sega Saturn</option>
+                        </select>
+                    </div>
+
+                    <div class="summary" id="summary">
+                        Carregando catálogo...
+                    </div>
+
+                    <div id="message" role="status" aria-live="polite"></div>
+
+                    <section id="games" class="games-grid"
+                             aria-label="Lista de jogos"></section>
+                </section>
+
+                <footer>
+                    NGDA 0.1.0 · Biblioteca local
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const gamesContainer = document.querySelector("#games");
+        const summary = document.querySelector("#summary");
+        const message = document.querySelector("#message");
+        const search = document.querySelector("#search");
+        const systemFilter = document.querySelector("#system-filter");
+
+        const nodesContainer = document.querySelector("#nodes");
+        const nodesSummary = document.querySelector("#nodes-summary");
+        const nodesMessage = document.querySelector("#nodes-message");
+        const nodesUpdated = document.querySelector("#nodes-updated");
+
+        let allGames = [];
+        let loadingNodes = false;
+
+        function createGameCard(game) {
+            const card = document.createElement("article");
+            card.className = "game-card";
+
+            const title = document.createElement("h3");
+            title.textContent = game.title || "Jogo sem título";
+
+            const system = document.createElement("p");
+            system.className = "game-system";
+            system.textContent = game.system_name || game.system_id || "Sistema desconhecido";
+
+            const details = document.createElement("p");
+            details.className = "game-details";
+            details.textContent =
+                `${(game.format || "arquivo").toUpperCase()} · ` +
+                `${game.core || "core não definido"}`;
+
+            const status = document.createElement("span");
+            status.className = "status";
+            status.textContent = game.status || "desconhecido";
+
+            card.append(title, system, details, status);
+            return card;
+        }
+
+        function renderGames() {
+            const term = search.value.trim().toLocaleLowerCase("pt-BR");
+            const system = systemFilter.value;
+
+            const filtered = allGames.filter(game => {
+                const title = (game.title || "").toLocaleLowerCase("pt-BR");
+                const systemName = (game.system_name || "")
+                    .toLocaleLowerCase("pt-BR");
+
+                const matchesText =
+                    title.includes(term) || systemName.includes(term);
+
+                const matchesSystem =
+                    !system || game.system_id === system;
+
+                return matchesText && matchesSystem;
+            });
+
+            gamesContainer.replaceChildren();
+
+            for (const game of filtered) {
+                gamesContainer.appendChild(createGameCard(game));
+            }
+
+            const candidates = allGames.filter(
+                game => game.status === "candidate"
+            ).length;
+
+            summary.textContent =
+                `${filtered.length} jogo(s) exibido(s) · ` +
+                `${candidates} candidato(s) no catálogo`;
+
+            message.textContent = filtered.length === 0
+                ? "Nenhum jogo corresponde à busca."
+                : "";
+        }
+
+        async function loadGames() {
+            try {
+                const response = await fetch("/api/games");
+
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP ${response.status}`);
+                }
+
+                const catalog = await response.json();
+                allGames = catalog.games || [];
+                renderGames();
+            } catch (error) {
+                summary.textContent = "Não foi possível carregar o catálogo.";
+                message.textContent =
+                    `${error.message}. Verifique se a API está funcionando.`;
+            }
+        }
+
+        function createNodeCard(node) {
+            const card = document.createElement("article");
+            card.className = "node-card";
+
+            const header = document.createElement("div");
+            header.className = "node-card-header";
+
+            const name = document.createElement("h3");
+            name.textContent = node.name || "Nó sem nome";
+
+            const indicator = document.createElement("span");
+            indicator.className = "node-indicator " +
+                (node.reachable ? "is-online" : "is-offline");
+
+            indicator.textContent = node.reachable ? "Online" : "Offline";
+            header.append(name, indicator);
+
+            const host = document.createElement("p");
+            host.className = "node-detail";
+            host.textContent = `Computador: ${node.host || "não informado"}`;
+
+            const service = document.createElement("p");
+            service.className = "node-detail";
+            service.textContent =
+                `Serviço: ${node.service_name || "não registrado"}`;
+
+            const pid = document.createElement("p");
+            pid.className = "node-detail";
+            pid.textContent =
+                `Processo: ${node.pid ?? "não disponível"}`;
+
+            const state = document.createElement("p");
+            state.className = "node-state";
+            state.textContent = node.reachable
+                ? "Agente respondendo às consultas RPC."
+                : "Agente registrado, mas sem resposta.";
+
+            card.append(header, host, service, pid, state);
+            return card;
+        }
+
+        async function loadNodes() {
+            if (loadingNodes) return;
+            loadingNodes = true;
+
+            try {
+                const response = await fetch("/api/nodes", {
+                    cache: "no-store"
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        result.detail || `Erro HTTP ${response.status}`
+                    );
+                }
+
+                const nodes = result.nodes || [];
+                nodesContainer.replaceChildren();
+
+                for (const node of nodes) {
+                    nodesContainer.appendChild(createNodeCard(node));
+                }
+
+                nodesSummary.textContent =
+                    `${result.online_nodes}/${result.total_nodes} online`;
+
+                if (nodes.length === 0) {
+                    nodesMessage.textContent =
+                        "Nenhum agente registrado no Name Server.";
+                } else {
+                    nodesMessage.textContent =
+                        "Consulta aos agentes concluída.";
+                }
+
+                nodesUpdated.textContent =
+                    new Date().toLocaleTimeString("pt-BR");
+            } catch (error) {
+                nodesSummary.textContent = "Indisponível";
+                nodesMessage.textContent =
+                    `Não foi possível consultar os nós: ${error.message}`;
+            } finally {
+                loadingNodes = false;
+            }
+        }
+
+        search.addEventListener("input", renderGames);
+        systemFilter.addEventListener("change", renderGames);
+
+        loadGames();
+        loadNodes();
+
+        // Atualiza o estado dos agentes a cada cinco segundos.
+        setInterval(loadNodes, 5000);
+    </script>
+</body>
+</html>

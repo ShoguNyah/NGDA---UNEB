@@ -1,0 +1,27 @@
+
+# Ambiente Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Segredos e logs
+.env
+*.log
+
+# Ambientes e arquivos temporários
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+
+# Jogos, imagens de disco e arquivos de execução
+roms/
+runtime/
+data/games/
+
+# Arquivos de desenvolvimento
+.vscode/
+.idea/

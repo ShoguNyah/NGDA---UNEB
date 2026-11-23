@@ -1,0 +1,309 @@
+
+:root {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: #172b40;
+    background: #c6d9e8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at top, #eef8ff 0%, transparent 55%),
+        linear-gradient(135deg, #9ebbd2, #dce8f1 55%, #8ba8c1);
+}
+
+.desktop {
+    min-height: 100vh;
+    padding: 5vh 4vw;
+}
+
+.main-window {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 18px 55px #18334b55;
+}
+
+.main-window > .title-bar {
+    min-height: 34px;
+}
+
+.main-window > .window-body {
+    padding: 24px;
+    background: linear-gradient(
+        145deg,
+        rgb(247 252 255 / 96%),
+        rgb(220 235 247 / 96%)
+    );
+}
+
+.hero {
+    padding: 8px 4px 22px;
+}
+
+.eyebrow {
+    margin: 0;
+    color: #416e99;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    margin: 8px 0;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 400;
+}
+
+.hero p:last-child {
+    color: #536c81;
+}
+
+/* Painel de monitoramento dos nós */
+
+.nodes-panel,
+.library-panel {
+    padding: 20px;
+    border: 1px solid #a9c3d8;
+    border-radius: 8px;
+    background: rgb(255 255 255 / 42%);
+}
+
+.nodes-panel {
+    margin-bottom: 22px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-heading h2 {
+    margin: 6px 0 0;
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.section-description {
+    margin: 10px 0 16px;
+    color: #536c81;
+    font-size: 13px;
+}
+
+.summary-chip {
+    padding: 6px 11px;
+    border: 1px solid #a4b9ca;
+    border-radius: 20px;
+    background: #eaf3fa;
+    color: #294d6b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.nodes-message {
+    margin: 10px 0;
+    color: #49647c;
+    font-size: 13px;
+}
+
+.nodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.node-card {
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid #abc3d6;
+    border-radius: 7px;
+    background: linear-gradient(
+        145deg,
+        rgb(255 255 255 / 95%),
+        rgb(228 240 249 / 96%)
+    );
+    box-shadow: 0 3px 9px #23496712;
+}
+
+.node-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.node-card h3 {
+    margin: 0;
+    font-size: 17px;
+    overflow-wrap: anywhere;
+}
+
+.node-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.node-indicator::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.node-indicator.is-online {
+    color: #216b43;
+    border-color: #9bc9ad;
+    background: #e4f5e9;
+}
+
+.node-indicator.is-offline {
+    color: #973b3b;
+    border-color: #d9aaaa;
+    background: #fbeaea;
+}
+
+.node-detail {
+    margin: 8px 0;
+    color: #526a7d;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.node-state {
+    margin: 14px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid #c9dbe8;
+    color: #315e83;
+    font-size: 12px;
+}
+
+.last-update {
+    margin: 14px 0 0;
+    color: #6b8194;
+    font-size: 11px;
+}
+
+.library-heading {
+    margin-bottom: 18px;
+}
+
+/* Busca e catálogo */
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.toolbar input {
+    flex: 1 1 240px;
+    min-width: 0;
+}
+
+.toolbar select {
+    flex: 0 1 220px;
+}
+
+.summary {
+    margin: 12px 0;
+    color: #49647c;
+    font-size: 13px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+.game-card {
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid #9dbbd3;
+    border-radius: 6px;
+    background: linear-gradient(
+        145deg,
+        rgb(255 255 255 / 94%),
+        rgb(226 240 250 / 96%)
+    );
+    box-shadow: 0 3px 9px #23496712;
+}
+
+.game-card h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
+
+.game-system {
+    margin: 0 0 12px;
+    color: #315e83;
+}
+
+.game-details {
+    color: #526a7d;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid #a4b9ca;
+    border-radius: 4px;
+    background: #eaf3fa;
+    color: #294d6b;
+    font-size: 12px;
+}
+
+#message {
+    margin: 10px 0;
+    color: #8a3434;
+    font-size: 13px;
+}
+
+footer {
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #b5cbdc;
+    color: #6b8194;
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    .desktop {
+        padding: 12px;
+    }
+
+    .main-window > .window-body {
+        padding: 14px;
+    }
+
+    .nodes-panel,
+    .library-panel {
+        padding: 14px;
+    }
+
+    .toolbar select {
+        flex-basis: 100%;
+    }
+}
