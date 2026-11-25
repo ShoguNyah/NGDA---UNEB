@@ -1,28 +1,138 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-10-21T19:06:21.160582+00:00",
+  "generated_at": "2026-11-25T00:59:38.037412+00:00",
   "roms_directory": "D:\\Facul\\UNEB\\EstruturaDeDados2\\NEOGEO-System\\roms",
-  "total_games": 3,
-  "candidate_games": 2,
+  "total_games": 4,
+  "candidate_games": 4,
   "games": [
     {
-      "id": "saturn:AstraSuperstars.rar",
-      "title": "AstraSuperstars",
-      "system_id": "saturn",
-      "system_name": "Sega Saturn",
-      "archive": "AstraSuperstars.rar",
-      "format": "rar",
-      "size_bytes": 385760039,
+      "id": "arcade:astrass.zip",
+      "title": "Astra Superstars",
+      "rom_stem": "astrass",
+      "cover": "/api/cover/astrasuperstars",
+      "system_id": "arcade",
+      "system_name": "Arcade / Neo Geo (MAME)",
+      "archive": "astrass.zip",
+      "format": "zip",
+      "size_bytes": 18542650,
       "emulator": "retroarch",
-      "core": "beetle_saturn",
-      "launch_mode": "extract_disc_image",
-      "status": "needs_rar_inspection",
-      "contents": [],
-      "error": "Arquivo RAR catalogado, mas seu conteúdo ainda precisa ser inspecionado."
+      "core": "mame",
+      "launch_mode": "zip_direct",
+      "status": "candidate",
+      "contents": [
+        {
+          "name": "epr-17740.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "epr-17951a.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "epr-17952a.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "epr-17953a.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "epr-17954a.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "epr-19730.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "epr-20091.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "epr20825.13",
+          "size_bytes": 1048576,
+          "encrypted": false
+        },
+        {
+          "name": "mpr20826.1",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "mpr20827.2",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "mpr20828.3",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "mpr20829.4",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "mpr20830.5",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "mpr20831.6",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "mpr20832.8",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "mpr20833.9",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "stat_t.bin",
+          "size_bytes": 73376,
+          "encrypted": false
+        },
+        {
+          "name": "stv1061.bin",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "stv110.bin",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "stvb111j.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "stvb111t.ic8",
+          "size_bytes": 524288,
+          "encrypted": false
+        }
+      ],
+      "error": null
     },
     {
       "id": "neogeo:galaxyfg.zip",
-      "title": "galaxyfg",
+      "title": "Galaxy Fight: Universal Warriors",
+      "rom_stem": "galaxyfg",
+      "cover": "/api/cover/galaxyfg",
       "system_id": "neogeo",
       "system_name": "SNK Neo Geo",
       "archive": "galaxyfg.zip",
@@ -107,101 +217,406 @@
       "error": null
     },
     {
-      "id": "neogeo:kof2002.zip",
-      "title": "kof2002",
+      "id": "arcade:kof2003.zip",
+      "title": "The King of Fighters 2003",
+      "rom_stem": "kof2003",
+      "cover": "/api/cover/kof2003",
+      "system_id": "arcade",
+      "system_name": "Arcade / Neo Geo (MAME)",
+      "archive": "kof2003.zip",
+      "format": "zip",
+      "size_bytes": 84355926,
+      "emulator": "retroarch",
+      "core": "mame",
+      "launch_mode": "zip_direct",
+      "status": "candidate",
+      "contents": [
+        {
+          "name": "000-lo.lo",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "271-c1c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-c2c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-c3c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-c4c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-c5c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-c6c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-c7c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-c8c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-m1c.bin",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "271-p1c.bin",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "271-p2c.bin",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "271-p3c.bin",
+          "size_bytes": 1048576,
+          "encrypted": false
+        },
+        {
+          "name": "271-v1c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "271-v2c.bin",
+          "size_bytes": 8388608,
+          "encrypted": false
+        },
+        {
+          "name": "asia-s3.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "japan-j3.bin",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sfix.sfix",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sm1.sm1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-1v1_3db8c.bin",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-45.sp1",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "sp-e.sp1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-j2.sp1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-s.sp1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-s2.sp1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp1.jipan.1024",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_0.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_1.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_2.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_2o.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_3.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_0.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_1.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_2.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_3.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_3o.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "usa_2slt.bin",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "vs-bios.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "neogeo:wakuwak7.zip",
+      "title": "Waku Waku 7",
+      "rom_stem": "wakuwak7",
+      "cover": "/api/cover/wakuwaku7",
       "system_id": "neogeo",
       "system_name": "SNK Neo Geo",
-      "archive": "kof2002.zip",
+      "archive": "wakuwak7.zip",
       "format": "zip",
-      "size_bytes": 41733426,
+      "size_bytes": 14443343,
       "emulator": "retroarch",
       "core": "fbneo",
       "launch_mode": "zip_direct",
       "status": "candidate",
       "contents": [
         {
-          "name": "king/kof2k2_c1.rom",
-          "size_bytes": 8388608,
-          "encrypted": false
-        },
-        {
-          "name": "king/kof2k2_c2.rom",
-          "size_bytes": 8388608,
-          "encrypted": false
-        },
-        {
-          "name": "king/kof2k2_c3.rom",
-          "size_bytes": 8388608,
-          "encrypted": false
-        },
-        {
-          "name": "king/kof2k2_c4.rom",
-          "size_bytes": 8388608,
-          "encrypted": false
-        },
-        {
-          "name": "king/kof2k2_c5.rom",
-          "size_bytes": 8388608,
-          "encrypted": false
-        },
-        {
-          "name": "king/kof2k2_c6.rom",
-          "size_bytes": 8388608,
-          "encrypted": false
-        },
-        {
-          "name": "king/kof2k2_c7.rom",
-          "size_bytes": 8388608,
-          "encrypted": false
-        },
-        {
-          "name": "king/kof2k2_c8.rom",
-          "size_bytes": 8388608,
-          "encrypted": false
-        },
-        {
-          "name": "king/kof2K2_M1.ROM",
+          "name": "000-lo.lo",
           "size_bytes": 131072,
           "encrypted": false
         },
         {
-          "name": "king/kof2k2_p1.rom",
+          "name": "225-c1.bin",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "225-c2.bin",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "225-c3.bin",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "225-c4.bin",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "225-c5.bin",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "225-c6.bin",
+          "size_bytes": 4194304,
+          "encrypted": false
+        },
+        {
+          "name": "225-m1.bin",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "225-p1.bin",
           "size_bytes": 1048576,
           "encrypted": false
         },
         {
-          "name": "king/kof2k2_p2.rom",
-          "size_bytes": 4194304,
+          "name": "225-p2.bin",
+          "size_bytes": 2097152,
           "encrypted": false
         },
         {
-          "name": "king/kof2k2_s1.rom",
+          "name": "225-s1.bin",
           "size_bytes": 131072,
           "encrypted": false
         },
         {
-          "name": "king/kof2K2_V1.ROM",
+          "name": "225-v1.bin",
           "size_bytes": 4194304,
           "encrypted": false
         },
         {
-          "name": "king/kof2K2_V2.ROM",
+          "name": "225-v2.bin",
           "size_bytes": 4194304,
           "encrypted": false
         },
         {
-          "name": "king/kof2K2_V3.ROM",
-          "size_bytes": 4194304,
+          "name": "asia-s3.rom",
+          "size_bytes": 131072,
           "encrypted": false
         },
         {
-          "name": "king/kof2K2_V4.ROM",
-          "size_bytes": 4194304,
+          "name": "japan-j3.bin",
+          "size_bytes": 131072,
           "encrypted": false
         },
         {
-          "name": "readme.html",
-          "size_bytes": 730,
+          "name": "sfix.sfix",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sm1.sm1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-1v1_3db8c.bin",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-45.sp1",
+          "size_bytes": 524288,
+          "encrypted": false
+        },
+        {
+          "name": "sp-e.sp1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-j2.sp1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-s.sp1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp-s2.sp1",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "sp1.jipan.1024",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_0.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_1.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_2.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_2o.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_1_3.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_0.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_1.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_2.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_3.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "uni-bios_2_3o.rom",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "usa_2slt.bin",
+          "size_bytes": 131072,
+          "encrypted": false
+        },
+        {
+          "name": "vs-bios.rom",
+          "size_bytes": 131072,
           "encrypted": false
         }
       ],

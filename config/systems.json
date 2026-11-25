@@ -1,36 +1,28 @@
-
+﻿
 {
   "systems": {
+    "arcade": {
+      "name": "Arcade / Neo Geo (MAME)",
+      "emulator": "retroarch",
+      "core": "mame",
+      "launch_mode": "zip_direct",
+      "accepted_extensions": [".zip", ".7z"],
+      "filename_hints": ["kof2003", "astrasuperstars", "astra superstars", "astrass"]
+    },
     "neogeo": {
       "name": "SNK Neo Geo",
       "emulator": "retroarch",
       "core": "fbneo",
       "launch_mode": "zip_direct",
-      "accepted_extensions": [".zip", ".rar"],
-      "filename_hints": ["kof2002", "galaxyfg"]
+      "accepted_extensions": [".zip", ".7z"],
+      "filename_hints": ["galaxyfg", "wakuwak7", "wakuwaku7", "waku waku 7", "mslug", "garou", "samsho"]
     },
     "saturn": {
       "name": "Sega Saturn",
       "emulator": "retroarch",
       "core": "beetle_saturn",
-      "launch_mode": "extract_disc_image",
-      "accepted_extensions": [".zip", ".rar"],
-      "filename_hints": ["astrasuperstars", "astra superstars"]
-    },
-    "playstation": {
-      "name": "Sony PlayStation",
-      "emulator": "retroarch",
-      "core": "pcsx_rearmed",
-      "launch_mode": "extract_disc_image",
-      "accepted_extensions": [".zip", ".rar"],
-      "filename_hints": []
-    },
-    "arcade": {
-      "name": "Arcade multissistema",
-      "emulator": "retroarch",
-      "core": "mame",
-      "launch_mode": "zip_direct",
-      "accepted_extensions": [".zip", ".rar"],
+      "launch_mode": "disc_direct",
+      "accepted_extensions": [".cue", ".chd", ".iso"],
       "filename_hints": []
     }
   }

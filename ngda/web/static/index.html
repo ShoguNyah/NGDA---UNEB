@@ -1,293 +1,360 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGDA — Neo Geo Distributed Arcade</title>
-
-    <link rel="stylesheet" href="https://unpkg.com/7.css">
-    <link rel="stylesheet" href="/static/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGDA — Games Explorer</title>
+  <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
-    <main class="desktop">
-        <section class="window main-window">
-            <div class="title-bar">
-                <div class="title-bar-text">
-                    NGDA — Neo Geo Distributed Arcade
-                </div>
-                <div class="title-bar-controls">
-                    <button aria-label="Minimize"></button>
-                    <button aria-label="Maximize"></button>
-                    <button aria-label="Close"></button>
-                </div>
-            </div>
 
-            <div class="window-body">
-                <header class="hero">
-                    <p class="eyebrow">ARCADE LIBRARY</p>
-                    <h1>Minha coleção</h1>
-                    <p>Seus sistemas e jogos em um só lugar.</p>
-                </header>
+  <!-- 1. Barra Superior Aero Glass -->
+  <header class="vista-aero-bar">
+    <div class="nav-cluster">
+      <button class="aero-circle-btn" title="Voltar" onclick="resetFilters()">&#9664;</button>
+      <button class="aero-circle-btn is-dim" title="Avançar">&#9654;</button>
+      <span class="nav-dropdown-arrow">&#9662;</span>
+    </div>
 
-                <section class="nodes-panel" aria-labelledby="nodes-heading">
-                    <div class="section-heading">
-                        <div>
-                            <p class="eyebrow">DISTRIBUTED SYSTEM</p>
-                            <h2 id="nodes-heading">Nós do NGDA</h2>
-                        </div>
-                        <span id="nodes-summary" class="summary-chip">
-                            Consultando...
-                        </span>
-                    </div>
+    <div class="vista-address-box">
+      <div class="address-crumbs">
+        <span class="crumb-icon">G</span>
+        <span class="crumb-sep">&#9656;</span>
+        <span class="crumb-link" onclick="resetFilters()">Games</span>
+        <span class="crumb-sep">&#9656;</span>
+      </div>
+      <div class="address-actions">
+        <button class="address-btn" title="Histórico">&#9662;</button>
+        <button class="address-btn" title="Atualizar Catálogo" onclick="loadGames()">&#8635;</button>
+      </div>
+    </div>
 
-                    <p class="section-description">
-                        Estado dos agentes distribuídos registrados no Pyro5.
-                    </p>
+    <div class="vista-search-box">
+      <input
+        id="search"
+        type="text"
+        placeholder="Search"
+        aria-label="Search Games"
+      />
+      <span class="search-glass-icon">&#128269;</span>
+    </div>
+  </header>
 
-                    <div id="nodes-message" class="nodes-message"
-                         role="status" aria-live="polite">
-                        Consultando os agentes...
-                    </div>
+  <!-- 2. Barra de Menu Clássica -->
+  <nav class="vista-menubar">
+    <span class="menu-item" onclick="openRomsFolder()">File</span>
+    <span class="menu-item" onclick="openCoversFolder()">Edit</span>
+    <span class="menu-item" onclick="openCoversFolder()">View</span>
+    <span class="menu-item" onclick="toggleToolsDrawer()">Tools</span>
+    <span class="menu-item" onclick="toggleNodesDrawer()">Help</span>
+  </nav>
 
-                    <div id="nodes" class="nodes-grid"
-                         aria-label="Agentes distribuídos"></div>
+  <!-- 3. Barra de Comandos Azul-Petróleo -->
+  <nav class="vista-command-bar">
+    <div class="command-left">
+      <button class="cmd-btn" onclick="openRomsFolder()" title="Abrir pasta de ROMs">
+        <span class="cmd-icon">&#128193;</span>
+        <span>Organize</span>
+        <span class="cmd-caret">&#9662;</span>
+      </button>
 
-                    <p class="last-update">
-                        Última consulta: <span id="nodes-updated">—</span>
-                    </p>
-                </section>
+      <button class="cmd-btn" onclick="openCoversFolder()" title="Abrir pasta de imagens/capas">
+        <span class="cmd-icon">&#128444;</span>
+        <span>Views</span>
+        <span class="cmd-caret">&#9662;</span>
+      </button>
 
-                <section class="library-panel" aria-labelledby="library-heading">
-                    <div class="section-heading library-heading">
-                        <div>
-                            <p class="eyebrow">GAME COLLECTION</p>
-                            <h2 id="library-heading">Biblioteca de jogos</h2>
-                        </div>
-                    </div>
+      <button class="cmd-btn" onclick="loadGames()" title="Reescanear catálogo de ROMs">
+        <span class="cmd-icon">&#9881;</span>
+        <span>Options</span>
+      </button>
 
-                    <div class="toolbar">
-                        <input
-                            id="search"
-                            type="search"
-                            placeholder="Buscar jogo ou sistema..."
-                            aria-label="Buscar jogo ou sistema"
-                        >
+      <button class="cmd-btn" id="btn-tools" onclick="toggleToolsDrawer()" title="Filtrar por sistema">
+        <span class="cmd-icon">&#128736;</span>
+        <span>Tools</span>
+        <span class="cmd-caret">&#9662;</span>
+      </button>
 
-                        <select id="system-filter" aria-label="Filtrar sistema">
-                            <option value="">Todos os sistemas</option>
-                            <option value="neogeo">SNK Neo Geo</option>
-                            <option value="saturn">Sega Saturn</option>
-                        </select>
-                    </div>
+      <button class="cmd-btn" id="btn-available" onclick="toggleOnlyAvailable()" title="Mostrar apenas jogos prontos">
+        <span class="cmd-icon">&#128737;</span>
+        <span>Parental Controls</span>
+      </button>
+    </div>
 
-                    <div class="summary" id="summary">
-                        Carregando catálogo...
-                    </div>
+    <div class="command-right">
+      <button class="pyro-status-btn" onclick="toggleNodesDrawer()" title="Ver agentes Pyro5">
+        <span class="status-dot" id="pyro-dot"></span>
+        <span id="nodes-summary">Nós Pyro5: consultando...</span>
+      </button>
+      <button class="help-circle-btn" onclick="toggleNodesDrawer()" title="Status da rede">?</button>
+    </div>
+  </nav>
 
-                    <div id="message" role="status" aria-live="polite"></div>
+  <!-- Gaveta Opcional de Filtro de Sistema (Tools) -->
+  <div class="sub-drawer" id="tools-drawer">
+    <strong>Filtrar Sistema:</strong>
+    <button class="node-chip" onclick="setSystemFilter('')">Todos os sistemas</button>
+    <button class="node-chip" onclick="setSystemFilter('neogeo')">SNK Neo Geo</button>
+    <button class="node-chip" onclick="setSystemFilter('saturn')">Sega Saturn</button>
+    <button class="node-chip" onclick="playSelected()">&#9654; Executar Jogo Selecionado</button>
+  </div>
 
-                    <section id="games" class="games-grid"
-                             aria-label="Lista de jogos"></section>
-                </section>
+  <!-- Gaveta Opcional de Agentes Pyro5 -->
+  <div class="sub-drawer" id="nodes-drawer"></div>
 
-                <footer>
-                    NGDA 0.1.0 · Biblioteca local
-                </footer>
-            </div>
-        </section>
-    </main>
+  <!-- 4. Cabeçalho Name ^ -->
+  <div class="vista-column-header">
+    <div class="col-name-tab" onclick="toggleSortOrder()">
+      <span>Name</span>
+      <span class="sort-arrow" id="sort-arrow">&#94;</span>
+    </div>
+  </div>
 
-    <script>
-        const gamesContainer = document.querySelector("#games");
-        const summary = document.querySelector("#summary");
-        const message = document.querySelector("#message");
-        const search = document.querySelector("#search");
-        const systemFilter = document.querySelector("#system-filter");
+  <!-- 5. Grade Principal de Capas -->
+  <main class="vista-games-canvas" id="games"></main>
 
-        const nodesContainer = document.querySelector("#nodes");
-        const nodesSummary = document.querySelector("#nodes-summary");
-        const nodesMessage = document.querySelector("#nodes-message");
-        const nodesUpdated = document.querySelector("#nodes-updated");
+  <!-- 6. Barra de Status Inferior -->
+  <footer class="vista-statusbar">
+    <span id="statusbar-left">NGDA 0.2.0 - Biblioteca local</span>
+    <span id="message" class="status-feedback"></span>
+  </footer>
 
-        let allGames = [];
-        let loadingNodes = false;
+  <script>
+    const gamesContainer = document.querySelector("#games");
+    const searchInput = document.querySelector("#search");
+    const messageEl = document.querySelector("#message");
+    const statusLeftEl = document.querySelector("#statusbar-left");
+    const nodesSummaryEl = document.querySelector("#nodes-summary");
+    const pyroDotEl = document.querySelector("#pyro-dot");
+    const nodesDrawer = document.querySelector("#nodes-drawer");
+    const toolsDrawer = document.querySelector("#tools-drawer");
+    const sortArrowEl = document.querySelector("#sort-arrow");
+    const btnAvailable = document.querySelector("#btn-available");
 
-        function createGameCard(game) {
-            const card = document.createElement("article");
-            card.className = "game-card";
+    const FALLBACK_COVER =
+      "data:image/svg+xml;utf8," +
+      encodeURIComponent(
+        `<svg xmlns="http://www.w3.org/2000/svg" width="146" height="196">
+          <rect width="100%" height="100%" fill="#f7f9fc"/>
+          <rect x="8" y="8" width="130" height="22" fill="#d9e4f0" stroke="#9eb2c7"/>
+          <rect x="8" y="38" width="84" height="148" fill="#e6eef7" stroke="#b0c2d4"/>
+          <rect x="100" y="38" width="38" height="44" fill="#d0e2f5" stroke="#8fa9c4"/>
+          <rect x="100" y="90" width="38" height="44" fill="#d7f0df" stroke="#8eb89c"/>
+          <rect x="100" y="142" width="38" height="44" fill="#f5e6d0" stroke="#c4aa88"/>
+        </svg>`
+      );
 
-            const title = document.createElement("h3");
-            title.textContent = game.title || "Jogo sem título";
+    let allGames = [];
+    let selectedGame = null;
+    let systemFilter = "";
+    let onlyAvailable = false;
+    let sortAsc = true;
 
-            const system = document.createElement("p");
-            system.className = "game-system";
-            system.textContent = game.system_name || game.system_id || "Sistema desconhecido";
+    function setFeedback(text, isError = false) {
+      messageEl.textContent = text;
+      messageEl.className = "status-feedback" + (isError ? " is-error" : "");
+    }
 
-            const details = document.createElement("p");
-            details.className = "game-details";
-            details.textContent =
-                `${(game.format || "arquivo").toUpperCase()} · ` +
-                `${game.core || "core não definido"}`;
+    async function openRomsFolder() {
+      try {
+        const res = await fetch("/api/open-roms", { method: "POST" });
+        const data = await res.json();
+        setFeedback(`Pasta de ROMs aberta: ${data.path}`);
+      } catch (err) {
+        setFeedback("Não foi possível abrir a pasta de ROMs.", true);
+      }
+    }
 
-            const status = document.createElement("span");
-            status.className = "status";
-            status.textContent = game.status || "desconhecido";
+    async function openCoversFolder() {
+      try {
+        const res = await fetch("/api/open-covers", { method: "POST" });
+        const data = await res.json();
+        setFeedback(`Pasta de capas aberta: ${data.path}`);
+      } catch (err) {
+        setFeedback("Não foi possível abrir a pasta de capas.", true);
+      }
+    }
 
-            card.append(title, system, details, status);
-            return card;
+    function toggleNodesDrawer() {
+      nodesDrawer.classList.toggle("is-open");
+    }
+
+    function toggleToolsDrawer() {
+      toolsDrawer.classList.toggle("is-open");
+    }
+
+    function setSystemFilter(sys) {
+      systemFilter = sys;
+      renderGames();
+    }
+
+    function toggleOnlyAvailable() {
+      onlyAvailable = !onlyAvailable;
+      btnAvailable.classList.toggle("is-active", onlyAvailable);
+      renderGames();
+    }
+
+    function toggleSortOrder() {
+      sortAsc = !sortAsc;
+      sortArrowEl.textContent = sortAsc ? "^" : "v";
+      renderGames();
+    }
+
+    function resetFilters() {
+      systemFilter = "";
+      onlyAvailable = false;
+      searchInput.value = "";
+      btnAvailable.classList.remove("is-active");
+      renderGames();
+    }
+
+    function selectGame(game) {
+      selectedGame = game;
+      renderGames();
+      const readyText =
+        game.status === "candidate"
+          ? "Pronto (duplo clique para jogar)"
+          : game.error || game.status;
+      statusLeftEl.textContent = `${game.title} — ${game.system_name} (${readyText})`;
+      setFeedback("");
+    }
+
+    function playSelected() {
+      if (selectedGame) {
+        launchGame(selectedGame);
+      }
+    }
+
+    async function launchGame(game) {
+      if (game.status !== "candidate") {
+        setFeedback(
+          `Indisponível: ${game.error || "jogo não pronto para execução."}`,
+          true
+        );
+        return;
+      }
+
+      setFeedback(`Iniciando "${game.title}" via Pyro5...`);
+
+      try {
+        const encodedId = encodeURIComponent(game.id);
+        const response = await fetch(`/api/games/${encodedId}/launch`, {
+          method: "POST",
+        });
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.detail || `Erro HTTP ${response.status}`);
         }
 
-        function renderGames() {
-            const term = search.value.trim().toLocaleLowerCase("pt-BR");
-            const system = systemFilter.value;
+        setFeedback(
+          `✔ "${result.title}" iniciado no nó "${result.agent}" (PID ${result.pid}).`
+        );
+      } catch (error) {
+        setFeedback(`✖ Falha ao iniciar "${game.title}": ${error.message}`, true);
+      }
+    }
 
-            const filtered = allGames.filter(game => {
-                const title = (game.title || "").toLocaleLowerCase("pt-BR");
-                const systemName = (game.system_name || "")
-                    .toLocaleLowerCase("pt-BR");
+    function renderGames() {
+      const term = searchInput.value.trim().toLocaleLowerCase("pt-BR");
 
-                const matchesText =
-                    title.includes(term) || systemName.includes(term);
+      const filtered = allGames
+        .filter(game => {
+          const title = (game.title || "").toLocaleLowerCase("pt-BR");
+          const sysName = (game.system_name || "").toLocaleLowerCase("pt-BR");
+          const matchesText = title.includes(term) || sysName.includes(term);
+          const matchesSys = !systemFilter || game.system_id === systemFilter;
+          const matchesAvail = !onlyAvailable || game.status === "candidate";
+          return matchesText && matchesSys && matchesAvail;
+        })
+        .sort((a, b) => {
+          const cmp = (a.title || "").localeCompare(b.title || "", "pt-BR");
+          return sortAsc ? cmp : -cmp;
+        });
 
-                const matchesSystem =
-                    !system || game.system_id === system;
+      gamesContainer.replaceChildren();
 
-                return matchesText && matchesSystem;
-            });
+      for (const game of filtered) {
+        const isPlayable = game.status === "candidate";
+        const isSelected = selectedGame && selectedGame.id === game.id;
 
-            gamesContainer.replaceChildren();
+        const tile = document.createElement("div");
+        tile.className =
+          `game-tile ${!isPlayable ? "is-unavailable" : ""} ${isSelected ? "is-selected" : ""}`;
 
-            for (const game of filtered) {
-                gamesContainer.appendChild(createGameCard(game));
-            }
+        const coverUrl = game.cover || FALLBACK_COVER;
+        const sysBadge = game.system_id === "unknown" ? "?" : game.system_id;
 
-            const candidates = allGames.filter(
-                game => game.status === "candidate"
-            ).length;
+        tile.innerHTML = `
+          <div class="cover-frame">
+            <img class="game-cover" src="${coverUrl}" alt="${game.title}" />
+            <span class="system-pill">${sysBadge}</span>
+          </div>
+          <div class="game-label">${game.title}</div>
+        `;
 
-            summary.textContent =
-                `${filtered.length} jogo(s) exibido(s) · ` +
-                `${candidates} candidato(s) no catálogo`;
+        const img = tile.querySelector("img");
+        img.onerror = () => {
+          img.src = FALLBACK_COVER;
+        };
 
-            message.textContent = filtered.length === 0
-                ? "Nenhum jogo corresponde à busca."
-                : "";
+        tile.addEventListener("click", () => selectGame(game));
+        tile.addEventListener("dblclick", () => launchGame(game));
+        gamesContainer.appendChild(tile);
+      }
+
+      if (!selectedGame) {
+        statusLeftEl.textContent = `NGDA 0.2.0 - Biblioteca local (${filtered.length} itens)`;
+      }
+    }
+
+    async function loadGames() {
+      try {
+        const response = await fetch("/api/games");
+        if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
+        const catalog = await response.json();
+        allGames = catalog.games || [];
+        renderGames();
+      } catch (error) {
+        setFeedback(`Erro ao carregar catálogo: ${error.message}`, true);
+      }
+    }
+
+    async function loadNodes() {
+      try {
+        const response = await fetch("/api/nodes", { cache: "no-store" });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.detail || `Erro HTTP ${response.status}`);
+
+        const nodes = result.nodes || [];
+        const online = result.online_nodes ?? 0;
+        const total = result.total_nodes ?? 0;
+
+        pyroDotEl.className = "status-dot" + (online === 0 ? " is-offline" : "");
+        nodesSummaryEl.textContent = `Nós Pyro5: ${online}/${total} online`;
+
+        nodesDrawer.replaceChildren();
+        for (const node of nodes) {
+          const chip = document.createElement("div");
+          chip.className = "node-chip";
+          chip.innerHTML = `
+            <span class="status-dot ${node.reachable ? "" : "is-offline"}"></span>
+            <strong>${node.name || "Agente"}</strong>
+            <span>(${node.host || "localhost"} • PID ${node.pid ?? "?"})</span>
+          `;
+          nodesDrawer.appendChild(chip);
         }
+      } catch (error) {
+        pyroDotEl.className = "status-dot is-offline";
+        nodesSummaryEl.textContent = "Nós Pyro5: offline";
+      }
+    }
 
-        async function loadGames() {
-            try {
-                const response = await fetch("/api/games");
+    searchInput.addEventListener("input", renderGames);
 
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP ${response.status}`);
-                }
-
-                const catalog = await response.json();
-                allGames = catalog.games || [];
-                renderGames();
-            } catch (error) {
-                summary.textContent = "Não foi possível carregar o catálogo.";
-                message.textContent =
-                    `${error.message}. Verifique se a API está funcionando.`;
-            }
-        }
-
-        function createNodeCard(node) {
-            const card = document.createElement("article");
-            card.className = "node-card";
-
-            const header = document.createElement("div");
-            header.className = "node-card-header";
-
-            const name = document.createElement("h3");
-            name.textContent = node.name || "Nó sem nome";
-
-            const indicator = document.createElement("span");
-            indicator.className = "node-indicator " +
-                (node.reachable ? "is-online" : "is-offline");
-
-            indicator.textContent = node.reachable ? "Online" : "Offline";
-            header.append(name, indicator);
-
-            const host = document.createElement("p");
-            host.className = "node-detail";
-            host.textContent = `Computador: ${node.host || "não informado"}`;
-
-            const service = document.createElement("p");
-            service.className = "node-detail";
-            service.textContent =
-                `Serviço: ${node.service_name || "não registrado"}`;
-
-            const pid = document.createElement("p");
-            pid.className = "node-detail";
-            pid.textContent =
-                `Processo: ${node.pid ?? "não disponível"}`;
-
-            const state = document.createElement("p");
-            state.className = "node-state";
-            state.textContent = node.reachable
-                ? "Agente respondendo às consultas RPC."
-                : "Agente registrado, mas sem resposta.";
-
-            card.append(header, host, service, pid, state);
-            return card;
-        }
-
-        async function loadNodes() {
-            if (loadingNodes) return;
-            loadingNodes = true;
-
-            try {
-                const response = await fetch("/api/nodes", {
-                    cache: "no-store"
-                });
-
-                const result = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(
-                        result.detail || `Erro HTTP ${response.status}`
-                    );
-                }
-
-                const nodes = result.nodes || [];
-                nodesContainer.replaceChildren();
-
-                for (const node of nodes) {
-                    nodesContainer.appendChild(createNodeCard(node));
-                }
-
-                nodesSummary.textContent =
-                    `${result.online_nodes}/${result.total_nodes} online`;
-
-                if (nodes.length === 0) {
-                    nodesMessage.textContent =
-                        "Nenhum agente registrado no Name Server.";
-                } else {
-                    nodesMessage.textContent =
-                        "Consulta aos agentes concluída.";
-                }
-
-                nodesUpdated.textContent =
-                    new Date().toLocaleTimeString("pt-BR");
-            } catch (error) {
-                nodesSummary.textContent = "Indisponível";
-                nodesMessage.textContent =
-                    `Não foi possível consultar os nós: ${error.message}`;
-            } finally {
-                loadingNodes = false;
-            }
-        }
-
-        search.addEventListener("input", renderGames);
-        systemFilter.addEventListener("change", renderGames);
-
-        loadGames();
-        loadNodes();
-
-        // Atualiza o estado dos agentes a cada cinco segundos.
-        setInterval(loadNodes, 5000);
-    </script>
+    loadGames();
+    loadNodes();
+    setInterval(loadNodes, 5000);
+  </script>
 </body>
 </html>

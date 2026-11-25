@@ -1,309 +1,510 @@
-
 :root {
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    color: #172b40;
-    background: #c6d9e8;
+  --vista-font: "Segoe UI", Tahoma, sans-serif;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+html,
 body {
-    margin: 0;
-    min-height: 100vh;
-    background:
-        radial-gradient(ellipse at top, #eef8ff 0%, transparent 55%),
-        linear-gradient(135deg, #9ebbd2, #dce8f1 55%, #8ba8c1);
+  width: 100%;
+  height: 100%;
+  font-family: var(--vista-font);
+  font-size: 12px;
+  color: #111111;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
 }
 
-.desktop {
-    min-height: 100vh;
-    padding: 5vh 4vw;
+/* 1. Barra Superior Aero Glass (Navegação, Breadcrumb e Search) */
+.vista-aero-bar {
+  height: 36px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(
+    180deg,
+    #527391 0%,
+    #35536e 48%,
+    #243d54 50%,
+    #365673 100%
+  );
+  border-bottom: 1px solid #162838;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
-.main-window {
-    width: min(1100px, 100%);
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 18px 55px #18334b55;
+.nav-cluster {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
-.main-window > .title-bar {
-    min-height: 34px;
+.aero-circle-btn {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #163759;
+  background: radial-gradient(
+    circle at 35% 28%,
+    #88c9ff 0%,
+    #2b78c2 52%,
+    #134578 85%,
+    #2868a8 100%
+  );
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.45);
 }
 
-.main-window > .window-body {
-    padding: 24px;
-    background: linear-gradient(
-        145deg,
-        rgb(247 252 255 / 96%),
-        rgb(220 235 247 / 96%)
-    );
+.aero-circle-btn:hover {
+  filter: brightness(1.14);
 }
 
-.hero {
-    padding: 8px 4px 22px;
+.aero-circle-btn.is-dim {
+  background: radial-gradient(
+    circle at 35% 28%,
+    #a5bac9 0%,
+    #6c8294 55%,
+    #4c6070 100%
+  );
+  opacity: 0.78;
 }
 
-.eyebrow {
-    margin: 0;
-    color: #416e99;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
+.nav-dropdown-arrow {
+  color: #d9ecff;
+  font-size: 9px;
+  padding: 0 3px;
+  cursor: pointer;
 }
 
-.hero h1 {
-    margin: 8px 0;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 400;
+.vista-address-box {
+  flex: 1;
+  height: 24px;
+  background: linear-gradient(180deg, #f3f7fb 0%, #ffffff 40%, #f5f8fc 100%);
+  border: 1px solid #1d354a;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 6px;
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
-.hero p:last-child {
-    color: #536c81;
+.address-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #111;
+  font-size: 12px;
 }
 
-/* Painel de monitoramento dos nós */
-
-.nodes-panel,
-.library-panel {
-    padding: 20px;
-    border: 1px solid #a9c3d8;
-    border-radius: 8px;
-    background: rgb(255 255 255 / 42%);
+.crumb-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #2d89ef, #00a300);
+  color: #fff;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: bold;
 }
 
-.nodes-panel {
-    margin-bottom: 22px;
+.crumb-sep {
+  color: #555;
+  font-size: 9px;
 }
 
-.section-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
+.crumb-link {
+  padding: 1px 5px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
 }
 
-.section-heading h2 {
-    margin: 6px 0 0;
-    font-size: 23px;
-    font-weight: 500;
+.crumb-link:hover {
+  background: linear-gradient(180deg, #e8f3ff 0%, #cce4ff 100%);
+  border-color: #7da2ce;
 }
 
-.section-description {
-    margin: 10px 0 16px;
-    color: #536c81;
-    font-size: 13px;
+.address-actions {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
-.summary-chip {
-    padding: 6px 11px;
-    border: 1px solid #a4b9ca;
-    border-radius: 20px;
-    background: #eaf3fa;
-    color: #294d6b;
-    font-size: 12px;
-    font-weight: 600;
+.address-btn {
+  height: 100%;
+  width: 22px;
+  border: none;
+  border-left: 1px solid #c5d2df;
+  background: linear-gradient(180deg, #f8fbff 0%, #dce6f2 100%);
+  color: #274b6d;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nodes-message {
-    margin: 10px 0;
-    color: #49647c;
-    font-size: 13px;
+.address-btn:hover {
+  background: linear-gradient(180deg, #e5f2ff 0%, #bedbff 100%);
 }
 
-.nodes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
+.vista-search-box {
+  width: 235px;
+  height: 24px;
+  background: #ffffff;
+  border: 1px solid #1d354a;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
-.node-card {
-    min-width: 0;
-    padding: 16px;
-    border: 1px solid #abc3d6;
-    border-radius: 7px;
-    background: linear-gradient(
-        145deg,
-        rgb(255 255 255 / 95%),
-        rgb(228 240 249 / 96%)
-    );
-    box-shadow: 0 3px 9px #23496712;
+.vista-search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--vista-font);
+  font-size: 12px;
+  font-style: italic;
+  color: #444;
+  background: transparent;
 }
 
-.node-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 14px;
+.vista-search-box input:not(:placeholder-shown),
+.vista-search-box input:focus {
+  font-style: normal;
+  color: #111;
 }
 
-.node-card h3 {
-    margin: 0;
-    font-size: 17px;
-    overflow-wrap: anywhere;
+.search-glass-icon {
+  color: #2968a8;
+  font-size: 13px;
 }
 
-.node-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 4px 8px;
-    border: 1px solid;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
+/* 2. Barra de Menu Clássica (File Edit View Tools Help) */
+.vista-menubar {
+  height: 23px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: linear-gradient(180deg, #f6f8fb 0%, #e3e9f1 50%, #d5deea 100%);
+  border-bottom: 1px solid #a4b2c2;
+  color: #111111;
 }
 
-.node-indicator::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: currentColor;
+.menu-item {
+  padding: 2px 7px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 12px;
 }
 
-.node-indicator.is-online {
-    color: #216b43;
-    border-color: #9bc9ad;
-    background: #e4f5e9;
+.menu-item:hover {
+  background: linear-gradient(180deg, #eef6ff 0%, #cde3fc 100%);
+  border-color: #7da2ce;
 }
 
-.node-indicator.is-offline {
-    color: #973b3b;
-    border-color: #d9aaaa;
-    background: #fbeaea;
+/* 3. Barra de Comandos Azul-Petróleo (Organize, Views, Options, Tools, Parental Controls) */
+.vista-command-bar {
+  height: 31px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(
+    180deg,
+    #2d628c 0%,
+    #1b496e 49%,
+    #103757 51%,
+    #1e527a 100%
+  );
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid #0b2438;
+  color: #ffffff;
 }
 
-.node-detail {
-    margin: 8px 0;
-    color: #526a7d;
-    font-size: 12px;
-    overflow-wrap: anywhere;
+.command-left {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
-.node-state {
-    margin: 14px 0 0;
-    padding-top: 10px;
-    border-top: 1px solid #c9dbe8;
-    color: #315e83;
-    font-size: 12px;
+.cmd-btn {
+  height: 24px;
+  padding: 0 9px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #ffffff;
+  font-family: var(--vista-font);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
 }
 
-.last-update {
-    margin: 14px 0 0;
-    color: #6b8194;
-    font-size: 11px;
+.cmd-btn:hover,
+.cmd-btn.is-active {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(255, 255, 255, 0.12) 49%,
+    rgba(255, 255, 255, 0.05) 51%,
+    rgba(255, 255, 255, 0.22) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
-.library-heading {
-    margin-bottom: 18px;
+.cmd-icon {
+  font-size: 13px;
 }
 
-/* Busca e catálogo */
-
-.toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 18px;
+.cmd-caret {
+  font-size: 9px;
+  opacity: 0.85;
 }
 
-.toolbar input {
-    flex: 1 1 240px;
-    min-width: 0;
+.command-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.toolbar select {
-    flex: 0 1 220px;
+.pyro-status-btn {
+  height: 23px;
+  padding: 0 9px;
+  background: rgba(8, 25, 40, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+  color: #eef8ff;
+  font-family: var(--vista-font);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.summary {
-    margin: 12px 0;
-    color: #49647c;
-    font-size: 13px;
+.pyro-status-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
 }
 
-.games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4cd964;
+  box-shadow: 0 0 4px #4cd964;
 }
 
-.game-card {
-    min-width: 0;
-    padding: 18px;
-    border: 1px solid #9dbbd3;
-    border-radius: 6px;
-    background: linear-gradient(
-        145deg,
-        rgb(255 255 255 / 94%),
-        rgb(226 240 250 / 96%)
-    );
-    box-shadow: 0 3px 9px #23496712;
+.status-dot.is-offline {
+  background: #ff4d4d;
+  box-shadow: 0 0 4px #ff4d4d;
 }
 
-.game-card h3 {
-    margin: 0 0 8px;
-    font-size: 20px;
-    overflow-wrap: anywhere;
+.help-circle-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: radial-gradient(circle at 35% 30%, #68b8ff, #165999);
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.game-system {
-    margin: 0 0 12px;
-    color: #315e83;
+/* Gaveta discreta para ver os Nós Pyro5 ou filtrar sistema quando clicado */
+.sub-drawer {
+  background: #eef4fa;
+  border-bottom: 1px solid #b8c9db;
+  padding: 7px 14px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.game-details {
-    color: #526a7d;
-    font-size: 12px;
-    overflow-wrap: anywhere;
+.sub-drawer.is-open {
+  display: flex;
 }
 
-.status {
-    display: inline-block;
-    padding: 4px 8px;
-    border: 1px solid #a4b9ca;
-    border-radius: 4px;
-    background: #eaf3fa;
-    color: #294d6b;
-    font-size: 12px;
+.node-chip {
+  background: #ffffff;
+  border: 1px solid #9eb6ce;
+  border-radius: 2px;
+  padding: 3px 9px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-#message {
-    margin: 10px 0;
-    color: #8a3434;
-    font-size: 13px;
+/* 4. Cabeçalho de Coluna (Name ^) */
+.vista-column-header {
+  height: 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
 }
 
-footer {
-    margin-top: 24px;
-    padding-top: 12px;
-    border-top: 1px solid #b5cbdc;
-    color: #6b8194;
-    font-size: 12px;
+.col-name-tab {
+  height: 100%;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-right: 1px solid #dce4ee;
+  background: linear-gradient(180deg, #f3f8ff 0%, #e1eefc 100%);
+  color: #365273;
+  font-size: 12px;
+  cursor: pointer;
+  position: relative;
 }
 
-@media (max-width: 600px) {
-    .desktop {
-        padding: 12px;
-    }
+.sort-arrow {
+  font-size: 9px;
+  color: #4f739c;
+}
 
-    .main-window > .window-body {
-        padding: 14px;
-    }
+/* 5. Área Branca Principal com Grade de Capas (Box Art) */
+.vista-games-canvas {
+  flex: 1;
+  background: #ffffff;
+  padding: 18px 26px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-auto-rows: max-content;
+  gap: 22px 20px;
+}
 
-    .nodes-panel,
-    .library-panel {
-        padding: 14px;
-    }
+.game-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 8px 8px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+}
 
-    .toolbar select {
-        flex-basis: 100%;
-    }
+.game-tile:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(242, 248, 255, 0.85) 0%,
+    rgba(220, 237, 255, 0.9) 100%
+  );
+  border-color: #b8d6fb;
+}
+
+.game-tile.is-selected {
+  background: linear-gradient(
+    180deg,
+    rgba(232, 244, 255, 0.95) 0%,
+    rgba(198, 226, 255, 0.95) 100%
+  );
+  border-color: #7da2ce;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.game-tile.is-unavailable {
+  opacity: 0.58;
+}
+
+.cover-frame {
+  width: 146px;
+  height: 196px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  position: relative;
+  background: #f4f7fb;
+  border: 1px solid #b9c4d0;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.28);
+}
+
+.game-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.system-pill {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 1px 6px;
+  background: #ffffff;
+  border: 1px solid #8a99a8;
+  border-radius: 2px;
+  color: #111111;
+  font-size: 11px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.game-label {
+  font-size: 13px;
+  color: #111111;
+  line-height: 1.25;
+  max-width: 156px;
+  word-break: break-word;
+}
+
+/* 6. Barra de Status Inferior (NGDA 0.2.0 - Biblioteca local) */
+.vista-statusbar {
+  height: 24px;
+  padding: 0 12px;
+  background: linear-gradient(180deg, #f3f6fa 0%, #e1e7ef 100%);
+  border-top: 1px solid #b5c2d1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #1e1e1e;
+}
+
+.status-feedback {
+  color: #1b5e20;
+  font-weight: 500;
+}
+
+.status-feedback.is-error {
+  color: #9e2a2b;
 }
